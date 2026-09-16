@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Enquiry</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+
+        body{
+            background-color:#f8f9fa;
+        }
+
+        .form-card{
+            background-color:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0px 2px 10px rgba(0,0,0,0.1);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container mt-4">
+
+    <!-- Navbar -->
+
+    <div class="d-flex justify-content-end mb-4">
+
+        <a href="/dashboard" class="btn btn-primary me-2">
+            Dashboard
+        </a>
+
+        <a href="/add-enquiry" class="btn btn-success me-2">
+            Add Enquiry
+        </a>
+
+        <a href="/view-enquiries" class="btn btn-warning me-2">
+            View Enquiries
+        </a>
+
+        <a href="/logout" class="btn btn-danger">
+            Logout
+        </a>
+
+    </div>
+
+
+    <!-- Heading -->
+
+    <h2 class="text-center mb-4">
+        📘 Edit Enquiry
+    </h2>
+
+
+    <!-- Success Message -->
+
+    <div class="text-center text-success">
+        <p th:text="${smsg}"></p>
+    </div>
+
+
+    <!-- Error Message -->
+
+    <div class="text-center text-danger">
+        <p th:text="${emsg}"></p>
+    </div>
+
+
+    <!-- Form Card -->
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="form-card">
+
+               <form th:action="@{/add-enquiry}"
+                      th:object="${enqDto}"
+                      method="post">
+					  
+	  <input type="hidden" th:field="*{enqId}">
+
+                    <!-- Student Name -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Student Name
+                        </label>
+
+                        <input type="text"
+                               th:field="*{name}"
+                               class="form-control"
+                               required readonly>
+
+                    </div>
+
+
+                    <!-- Phone Number -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Phone Number
+                        </label>
+
+                        <input type="number"
+                               th:field="*{phoneNumber}"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+
+                    <!-- Class Mode -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Training Mode
+                        </label>
+
+                        <select th:field="*{classMode}"
+                                class="form-select"
+                                required>
+
+                            <option value="">
+                                Select Mode
+                            </option>
+
+                            <option value="Online">
+                                Online
+                            </option>
+
+                            <option value="Offline">
+                                Offline
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Course -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Select Course
+                        </label>
+
+                        <select th:field="*{courseId}"
+                                class="form-select"
+                                required>
+
+                            <option value="">
+                                Select Course
+                            </option>
+
+                            <option th:each="course : ${courses}"
+                                    th:value="${course.courseId}"
+                                    th:text="${course.courseName}">
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Status -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Enquiry Status
+                        </label>
+
+                        <select th:field="*{status}"
+                                class="form-select"
+                                required>
+
+                            <option value="">
+                                Select Status
+                            </option>
+
+                            <option value="NEW">
+                                New
+                            </option>
+
+                            <option value="ENROLLED">
+                                Enrolled
+                            </option>
+
+                            <option value="LOST">
+                                Lost
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Submit Button -->
+
+                    <div class="text-center">
+
+                        <input type="submit"
+                               value="Updated Enquiry"
+                               class="btn btn-primary w-100">
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

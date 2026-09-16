@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Register Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+
+        body{
+            background-color:#f3f6fb;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .register-card{
+
+            width:450px;
+            background:white;
+            padding:35px;
+            border-radius:12px;
+            box-shadow:0px 4px 15px rgba(0,0,0,0.1);
+
+        }
+
+        .register-title{
+            text-align:center;
+            margin-bottom:25px;
+            color:#0d6efd;
+            font-weight:bold;
+        }
+
+        .login-link{
+            text-align:center;
+            margin-top:20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="register-card">
+
+    <h2 class="register-title">
+        Counsellor Registration
+    </h2>
+
+
+    <!-- Success Message -->
+
+    <div class="text-success text-center">
+
+        <p th:text="${smsg}"></p>
+
+    </div>
+
+
+    <!-- Error Message -->
+
+    <div class="text-danger text-center">
+
+        <p th:text="${emsg}"></p>
+
+    </div>
+
+
+    <!-- Form -->
+
+    <form th:action="@{/register}"
+          th:object="${counsellor}"
+          method="post">
+
+        <!-- Name -->
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Full Name
+            </label>
+
+            <input type="text"
+                   th:field="*{name}"
+                   class="form-control"
+                   placeholder="Enter your name"
+                   required>
+
+        </div>
+
+
+        <!-- Email -->
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Email Address
+            </label>
+
+            <input type="email"
+                   th:field="*{email}"
+                   class="form-control"
+                   placeholder="Enter your email"
+                   required>
+
+        </div>
+
+
+        <!-- Password -->
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Password
+            </label>
+
+            <input type="password"
+                   th:field="*{password}"
+                   class="form-control"
+                   placeholder="Enter password"
+                   required>
+
+        </div>
+
+
+        <!-- Phone Number -->
+
+        <div class="mb-4">
+
+            <label class="form-label">
+                Phone Number
+            </label>
+
+            <input type="number"
+                   th:field="*{phoneNumber}"
+                   class="form-control"
+                   placeholder="Enter phone number"
+                   required>
+
+        </div>
+
+
+        <!-- Button -->
+
+        <div class="d-grid">
+
+            <input type="submit"
+                   value="Register"
+                   class="btn btn-primary">
+
+        </div>
+
+    </form>
+
+
+    <!-- Login Link -->
+
+    <div class="login-link">
+
+        <a href="/">
+            Already have an account? Login Here
+        </a>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
